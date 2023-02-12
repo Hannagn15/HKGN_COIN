@@ -1,0 +1,69 @@
+{% extends "venta.html"%}
+
+{% block section %}
+
+
+  
+</form>
+
+<form action="/tradeo" method="post">
+  {{ dataForm.csrf_token }}
+<form action="/tradeo/{{id}}" method="post">
+    {{ dataForm.csrf_token }}
+
+
+    <label for="moneda_to">¿Que moneda quieres comprar?</label>
+    <select name="moneda_to" id="moneda_to">
+    <option value="btc">BTC(Bitcoin)</option>
+      <option value="eth">ETH(Ethereum)</option>
+      <option value="bnb">Binance Coin (BNB)</option>
+      <option value="usdt">Tether (USDT)</option>
+      <option value="ada">Cardano (ADA)</option>
+      <option value="doge">Dogecoin (DOGE)</option>
+      <option value="dot">Polkadot (DOT)</option>
+
+    {{ dataForm.cantidad_from.label }}
+    {{ dataForm.cantidad_from(placeholder="¿Cuantas criptomonedas quieres comprar?") }}
+    {% if dataForm.cantidad_from.errors %}
+        <ul class="errors">
+        {% for error in dataForm.cantidad_from.errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    <button type="submit">Calcular</button>
+
+    <label for="moneda_from">¿Que moneda quieres vender?</label>
+    <select name="moneda_from" id="moneda_from">
+    <option value="btc">BTC(Bitcoin)</option>
+      <option value="eth">ETH(Ethereum)</option>
+      <option value="bnb">Binance Coin (BNB)</option>
+      <option value="usdt">Tether (USDT)</option>
+      <option value="ada">Cardano (ADA)</option>
+      <option value="doge">Dogecoin (DOGE)</option>
+      <option value="dot">Polkadot (DOT)</option>
+
+    <!-- {{ dataForm.cantidad_to.label }}
+    {{ dataForm.cantidad_to (placeholder="¿que cripto quieres vender?") }}
+    {% if dataForm.cantidad_to.errors %}
+        <ul class="errors">
+        {% for error in dataForm.cantidad_to.errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %} -->
+
+    {{ dataForm.submit }}
+
+
+</form>
+
+<article>
+    <ul>
+       {% for item in msgError %}     
+            <li class="error">{{item}}</li>
+       {% endfor %}     
+    </ul>
+</article>
+{% endblock %}

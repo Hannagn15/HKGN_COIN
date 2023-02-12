@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block section %}
+<h4>Total Ingresos: €</h4>
+<h4>Total Gastos: €</h4>
+<h4>Saldo Actual: €</h4>
+<h1>Lista de movimientos</h1>
+
+<table>
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Hora</th>
+        <th scope="col">moneda_from</th>
+        <th scope="col">cantidad_from</th>
+        <th scope="col">moneda_to</th>
+        <th scope="col">cantidad_to</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>20-01-2023</td>
+        <td>15:00</td>
+        <td>Euro</td>
+        <td>2000</td>
+        <td>BTC</td>
+        <td>1,0</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>02-01-2023</td>
+        <td>18:00</td>
+        <td>Euro</td>
+        <td>1000</td>
+        <td>ETH</td>
+        <td>3,0</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>02-01-2023</td>
+        <td>20:00</td>
+        <td>Euro</td>
+        <td>5000</td>
+        <td>BTC</td>
+        <td>2,0</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th scope="row">4</th>
+        <td>02-02-2023</td>
+        <td>05:00</td>
+        <td>Euro</td>
+        <td>3500</td>
+        <td>BTC</td>
+        <td>2,0</td>
+      </tr>
+    </tfoot>
+  </table>
+
+
+
+{% if data %}
+
+        <table role="grid">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Moneda origen</th>
+                    <th>Cantidad a invertir</th>
+                    <th>Criptomoneda a comprar</th>
+                    <th>Cantidad de cripstomonedas a comprar</th>
+                </tr>
+
+            </thead>
+            <tbody>
+
+                {% for movements in data %}
+                <tr>
+                
+                    <td>{{movements.date}}</td>
+                    <td>{{movements.hora}}</td>
+                    <td>{{movements.moneda_from}}</td>
+                    <td>{{movements.cantidad_from}}€</td>
+                    <td>{{movements.moneda_to}}</td>
+                    <td>{{movements.cantidad_to}}</td>
+                    
+                
+                    <td>
+                        <!--
+                        <a href="/update/{{movements.id}}">
+                            <span class="material-symbols-outlined">
+                                edit
+                            </span>
+                        
+                        </a>
+                       
+                        <a href="/delete/{{movements.id}}">
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                        </a>
+                        -->
+                    </td>
+                </tr>
+                {% endfor %}
+               
+            </tbody>
+        </table>
+{% else %}
+<h3>
+
+
+</h3>
+{% endif %}
+{% endblock %}

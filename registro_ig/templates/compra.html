@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block section %}
+  
+  </form>
+
+<form action="/compra" method="post">
+    {{ dataForm.csrf_token }}
+  
+
+<label for="moneda_from">¿Con que moneda vas a comprar?</label>
+<select name="moneda_from" id="moneda_from">
+  <option value="eur">Euro (EUR)</option>
+
+  {{ dataForm.cantidad_from.label }}
+    {{ dataForm.cantidad_from(placeholder="¿Cuanto dinero quieres invertir?") }}
+    {% if dataForm.cantidad_from.errors %}
+        <ul class="errors">
+        {% for error in dataForm.cantidad_from.errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    <label for="moneda_to">¿Que moneda quieres comprar?</label>
+    <select name="moneda_from" id="moneda_from">
+    <option value="btc">BTC(Bitcoin)</option>
+      <option value="eth">ETH(Ethereum)</option>
+      <option value="bnb">Binance Coin (BNB)</option>
+      <option value="usdt">Tether (USDT)</option>
+      <option value="ada">Cardano (ADA)</option>
+      <option value="doge">Dogecoin (DOGE)</option>
+      <option value="dot">Polkadot (DOT)</option>
+    </select>
+        
+        <form action="/convert" method="post">
+          <label>
+            Cantidad de criptos:
+            <input type="text" name="euros">
+          </label>
+          <input type="submit" value="Calcular">
+        </form>
+        {% if euros %}
+          <p>{{ euros }} euros son {{ btc }} bitcoins.</p>
+        {% endif %}
+    
+
+
+    <!-- <label for="moneda_to">¿Cuantas monedas quieres comprar?</label>
+    <select name="moneda_from" id="moneda_from">
+    <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+    </select> -->
+
+    {{ dataForm.submit }}
+
+
+</form>
+
+<article>
+    <ul>
+       {% for item in msgError %}     
+            <li class="error">{{item}}</li>
+       {% endfor %}     
+    </ul>
+</article>
+{% endblock %}
+
+-->
